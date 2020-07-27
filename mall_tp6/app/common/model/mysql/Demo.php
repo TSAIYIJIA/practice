@@ -1,5 +1,5 @@
 <?php
-namespace app\model;
+namespace app\common\model\mysql;
 
 use think\Model;
 class Demo extends Model{
@@ -13,5 +13,17 @@ class Demo extends Model{
         ];
 
         return  $status[$data['status']];//database status欄位
+    }
+    public function getDemoDataByCategoryId($id,$limit=4){
+        if(empty($id)){
+            return [];
+        }
+        $result=$this->where("id",$id)
+        ->limit($limit)
+        ->order("id","desc")
+        ->select()
+        ->toArray();
+
+        return $result;
     }
 }
