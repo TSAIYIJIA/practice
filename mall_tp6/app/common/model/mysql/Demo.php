@@ -14,13 +14,13 @@ class Demo extends Model{
 
         return  $status[$data['status']];//database status欄位
     }
-    public function getDemoDataByCategoryId($id,$limit=4){
-        if(empty($id)){
+    public function getDemoDataByCategoryId($category_id,$limit=4){
+        if(empty($category_id)){
             return [];
         }
-        $result=$this->where("id",$id)
+        $result=$this->where("category_id",$category_id)
         ->limit($limit)
-        ->order("id","desc")
+        ->order("category_id","desc")
         ->select()
         ->toArray();
 

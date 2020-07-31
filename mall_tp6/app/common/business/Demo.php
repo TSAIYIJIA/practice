@@ -6,9 +6,9 @@ class Demo{
     /**
      * business層通過getDemoDataByCategoryId來獲取數據
      */
-    public function getDemoDataByCategoryId($id,$limit=4){
+    public function getDemoDataByCategoryId($category_id,$limit=4){
         $model=new DemoModel();
-        $result=$model->getDemoDataByCategoryId($id,$limit);
+        $result=$model->getDemoDataByCategoryId($category_id,$limit);
         if(empty($result)){
             return [];
         }
@@ -17,7 +17,7 @@ class Demo{
         //利用配置文件來做數字狀態轉換
         $categorys=config("category");
         foreach($result as $key=>$r){
-            $result[$key]['categoryName']=$categorys[$r["id"]]??"其他";
+            $result[$key]['category_name']=$categorys[$r["category_id"]]??"其他";
         }
         return $result;
     }
